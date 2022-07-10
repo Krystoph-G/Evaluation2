@@ -6,11 +6,15 @@ const Hbutton = document.getElementById("Hbutton");
 const DVdisplay= document.getElementById("DVdisplay");
 const SJ1display = document.getElementById("SJ1display");
 const SJ2display = document.getElementById("SJ2display");
+const labelPlayer1 = document.getElementById("labelPlayer1");
+const labelPlayer2 = document.getElementById("labelPlayer2");
 const pointToWin = document.getElementById("pointToWin")
-var scorePlayer1 = 45;
-var scorePlayer2 = 45;
+var scorePlayer1 = 0;
+var scorePlayer2 = 0;
 var playerInGame = getRandomInt(2);
 var totalOngoing = 0;
+
+updateDisplay();
 
 RDbutton.addEventListener('click', () => {
     let diceValue = rollingDice();
@@ -27,7 +31,7 @@ RDbutton.addEventListener('click', () => {
     {
         totalOngoing = totalOngoing + diceValue;
     }
-    setTimeout(()=>{pointToWin.innerHTML = totalOngoing}, 2700)
+    setTimeout(()=>{updateDisplay()}, 2700)
 })
 
 
@@ -109,11 +113,30 @@ function deactivateButton(buttonIHM){
     }
 }
 
+function srcSelector(selector){
+    switch (selector) {
+      case 1:
+        return "Image-de/Image1.png";
+      case 2:
+        return "Image-de/Image2.png";
+      case 3:
+        return "Image-de/Image3.png";
+      case 4:
+        return "Image-de/Image4.png";
+      case 5:
+        return "Image-de/Image5.png";
+      case 6:
+        return "Image-de/Image6.png";
+      default:
+        alert("Developper go back to your office and solve the issue");
+    }
+}
+
 function rollingDice(){
     let diceValue = selectRandomNumber();
     animatingDice();
     setTimeout(()=>{
-        DVdisplay.innerHTML = diceValue;
+        DVdisplay.src = srcSelector(diceValue);
         if(diceValue != 1){
             pointToWin.innerHTML = totalOngoing
         }
@@ -136,20 +159,41 @@ function animatingDice(){
     let listNumber = [1, 2, 3, 4, 5, 6];
     listNumber.sort(function() {return .5 - Math.random();}); //Melange le tableau listNumber 
     DVdisplay.innerHTML = listNumber[0];
-    setTimeout(()=>{DVdisplay.innerHTML = listNumber[1]}, 300);
-    setTimeout(()=>{DVdisplay.innerHTML = listNumber[2]}, 600);
-    setTimeout(()=>{DVdisplay.innerHTML = listNumber[3]}, 900);
-    setTimeout(()=>{DVdisplay.innerHTML = listNumber[4]}, 1200);
-    setTimeout(()=>{DVdisplay.innerHTML = listNumber[5]}, 1500);
-    setTimeout(()=>{DVdisplay.innerHTML = listNumber[2]}, 1800);
-    setTimeout(()=>{DVdisplay.innerHTML = listNumber[4]}, 2100);
-    setTimeout(()=>{DVdisplay.innerHTML = listNumber[1]}, 2400);
+/*     console.log(DVdisplay.src); */
+    setTimeout(()=>{DVdisplay.src = "Image-de/Image1.png"}, 300);
+/*     setTimeout(()=>{console.log(DVdisplay.src)}, 300); */
+    setTimeout(()=>{DVdisplay.src = "Image-de/Image2.png"}, 600);
+    setTimeout(()=>{DVdisplay.src = "Image-de/Image3.png"}, 900);
+    setTimeout(()=>{DVdisplay.src = "Image-de/Image4.png"}, 1200);
+    setTimeout(()=>{DVdisplay.src = "Image-de/Image5.png"}, 1500);
+    setTimeout(()=>{DVdisplay.src = "Image-de/Image3.png"}, 1800);
+    setTimeout(()=>{DVdisplay.src = "Image-de/Image1.png"}, 2100);
+    setTimeout(()=>{DVdisplay.src = "Image-de/Image6.png"}, 2400);
     setTimeout(()=>{activateButton("allButton")}, 2700);
 }
 
 function updateDisplay(){
     SJ1display.innerHTML = scorePlayer1;
     SJ2display.innerHTML = scorePlayer2;
-    pointToWin.innerHTML = totalOngoing;
+    pointToWin.innerHTML = "Gain en jeu : " + totalOngoing;
+    if(playerInGame == 0){
+        labelPlayer1.className = "col-2 bg-light text-center border border-4 border-danger"
+        labelPlayer2.className = "col-2 bg-light text-center align-middle"
+    }
+    else if(playerInGame == 1){
+        labelPlayer1.className = "col-2 bg-light text-center align-middle"
+        labelPlayer2.className = "col-2 bg-light text-center border border-4 border-danger"
+    }
 }
 
+/* bg-secondary.bg-gradient
+
+
+    if(playerInGame == 0){
+        labelPlayer1.className = "col-2 text-white border border-white text-center align-middle"
+        labelPlayer2.className = "col-2 text-center align-middle"
+    }
+    else if(playerInGame == 1){
+        labelPlayer1.className = "col-2 text-white text-center align-middle"
+        labelPlayer2.className = "col-2 border border-dark text-center align-middle"
+    } */
