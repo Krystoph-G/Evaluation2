@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Jeu de dé</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="styleDiceGame.css">
+  </head>
+  <body>
+<!-- Background image -->
+    <div class="bg-image" style="background-image: img src="Image-de/Image2.png""; height: 100vh;"></div>
+<!-- Background image -->
+    <div class="row justify-content-center my-2">
+        <input class="col-10 col-lg-2 mx-2 my-1 d-block btn btn-primary" type="button" id="NGbutton" value="New game">
+        <input class="col-10 col-lg-2 mx-2 my-1 d-block btn btn-primary" type="button" id="RDbutton" value="Roll dice">
+        <input class="col-10 col-lg-2 mx-2 my-1 d-block btn btn-primary" type="button" id="Hbutton" value="Hold">
+    </div>
+    <div class="row justify-content-center">
+      <div class="card-group">
+        <div class="col-12 col-md-5 card text-white bg-danger mb-3 mx-3">
+          <div class="card-header text-center align-middle" id="labelPlayer1" >Joueur 1 
+            <span class="material-icons align-middle" id="iconPlayer1">casino</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center" id="SJ1display">0</h5>
+            <p class="card-text"></p>
+          </div>
+        </div>
+        <div class="col-12 col-md-5 card text-white bg-secondary mb-3 mx-3">
+          <div class="card-header text-center" id="labelPlayer2" >Joueur 2 
+            <span class="material-icons align-middle" id="iconPlayer2">casino</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center" id="SJ2display">0</h5>
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-2 text-center text-dark bg-light border border-3 border-success" id="pointToWin">Gain en jeu : 0</div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="img-responsive">
+        <img src="Image-de/Image2.png" id="DVdisplay" class="rounded mx-auto d-block" alt="...">
+      </div>
+    </div>
+    <script src="scriptDiceGame.js"></script>
+  </body>
+</html>
+
+
